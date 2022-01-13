@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const db = require('./models')
 const {sequelize} = require('./models')
 const authRoute = require('./routes/authRoute')
 const listRoute = require('./routes/listRoute')
@@ -12,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/lists', authenticate, listRoute)
+// app.use('/slists', listRoute)
 app.use('/', authRoute)
 
 app.use((req,res,next) => {
@@ -24,3 +26,7 @@ const port = process.env.PORT || 8080
 app.listen(port, ()=> console.log(`Server on ${port}..`))
 
 // sequelize.sync({force: true})
+// sequelize.sync()
+// sequelize.authenticate().then(()=>console.log('DB Connected..'))
+
+// db.User.findAll().then(res => console.log(JSON.stringify(res,null,2)) )

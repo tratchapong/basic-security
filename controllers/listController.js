@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 exports.getAllLists = async (req, res, next) => {
   try {
     const lists = await List.findAll({ where: { userId: req.user.id } });
-    res.json({ lists });
+    res.json( lists );
   } catch (error) {
     next(error);
   }
